@@ -25,7 +25,7 @@ dependencies:
   # UI + Navigation
   provider: ^6.1.2
   flutter_svg: ^2.0.10+1
-  intl: ^0.18.1
+  intl: ^0.20.2
 
   # Login via Google
   google_sign_in: ^6.2.1
@@ -45,4 +45,5 @@ flutter:
   assets:
     - assets/logo.png
     - assets/splash.png
+
 
