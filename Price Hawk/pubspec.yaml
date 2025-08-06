@@ -1,55 +1,47 @@
 name: price_hawk
-description: A smart price tracking app with premium, ads, donation, and multilingual support.
-publish_to: 'none'
-
+description: A smart price tracker app with alerts and deals
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.6
 
-  # Firebase
-  firebase_core: ^2.31.0
-  cloud_firestore: ^4.17.0
-  firebase_auth: ^4.17.0
-
-  # Login options
-  google_sign_in: ^6.2.1
-  firebase_ui_auth: ^1.14.0
+  # Firebase Core
+  firebase_core: ^2.25.4
+  firebase_auth: ^4.17.4
+  cloud_firestore: ^4.15.4
 
   # Notifications
-  flutter_local_notifications: ^17.0.0
-  firebase_messaging: ^15.0.0
+  firebase_messaging: ^14.7.4
+  flutter_local_notifications: ^17.1.2
 
   # Ads
   google_mobile_ads: ^5.1.0
 
-  # Localization
+  # UI + Navigation
+  provider: ^6.1.2
+  flutter_svg: ^2.0.10+1
+  intl: ^0.18.1
+
+  # Login via Google
+  google_sign_in: ^6.2.1
+
+  # Language support
   flutter_localizations:
     sdk: flutter
-  intl: ^0.19.0
-
-  # State management
-  provider: ^6.1.2
-
-  # UI
-  cupertino_icons: ^1.0.6
-  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^3.0.1
 
 flutter:
-
   uses-material-design: true
 
   assets:
-    - assets/logo.png
-    - assets/splash.png
-    - assets/banner_ad.png
-    - assets/home.png
-    - assets/lang/
+    - assets/images/
+    - assets/icons/
