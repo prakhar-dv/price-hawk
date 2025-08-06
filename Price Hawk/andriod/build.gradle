@@ -1,0 +1,28 @@
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+        defaultConfig {
+    applicationId "com.yourcompany.pricehawk"
+    minSdkVersion 21
+    targetSdkVersion 34
+    multiDexEnabled true
+
+    ndk {
+        abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+    }
+}
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.0'
+        classpath 'com.google.gms:google-services:4.4.3' // ✅ Firebase plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

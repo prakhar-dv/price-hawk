@@ -1,0 +1,35 @@
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+
+admin.initializeApp();
+const db = admin.firestore();
+
+// 🔁 Scheduled function to delete old product data
+exports.scheduledDataCleanup = functions.pubsub
+  .schedule("every 24 hours") // 🔁 runs once a day
+  .timeZone("Asia/Kolkata")
+  .onRun(async (context) => {
+    const snapshot = await db.collection("tracked_products").get();
+    const now = new Date();
+
+    snapshot.forEach(async (doc) => {
+      const data = doc.data();
+      const createdAt = data.timestamp.toDate();
+      const isPremium = data.premium || false;
+      const premiumDuration = data.premiumDuration || 0;
+
+      let allowedDays = 180; // default 6 months
+
+      if (isPremium && premiumDuration === 365) allowedDays = 425;
+      else if (isPremium && premiumDuration === 60) allowedDays = 180;
+
+      const msLimit = allowedDays * 24 * 60 * 60 * 1000;
+
+      if (now - createdAt > msLimit) {
+        await db.collection("tracked_products").doc(doc.id).delete();
+        console.log("Deleted:", doc.id);
+      }
+    });
+
+    return null;
+  });

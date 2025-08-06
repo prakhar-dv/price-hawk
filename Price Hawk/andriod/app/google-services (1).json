@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362474747639",
+    "project_id": "pricehawk-deals",
+    "storage_bucket": "pricehawk-deals.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362474747639:android:9e844ede16dce8c394c5f2",
+        "android_client_info": {
+          "package_name": "com.pricehawk.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA__0tapnonjrm925NS8dsFR3vxnZJ5Uq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
