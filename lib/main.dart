@@ -1,61 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'screens/home_screen.dart';
-import 'screens/tracked_products_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/premium_screen.dart';
-import 'backend/firestore_helper.dart';
-import 'backend/notification_service.dart';
-import 'backend/firebase_service.dart';
-import 'screens/settings_screen.dart';
-import 'screens/splash_screen.dart';
-import 'providers/theme_provider.dart';
-import 'localization/app_localizations.dart';
-import 'ads/ad_helper.dart';
-import 'widgets/premium_button.dart';
-import 'screens/donation_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:price_hawk/l10n/app_localizations.dart';
+import 'package:price_hawk/screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-  MobileAds.instance.initialize();
+  final prefs = await SharedPreferences.getInstance();
+  final savedTheme = prefs.getString('theme') ?? 'system';
+  final savedLang = prefs.getString('language') ?? 'en';
 
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => LocaleProvider()),
-      ],
-      child: const PriceHawkApp(),
-    ),
-  );
+  runApp(PriceHawkApp(
+    themeMode: _getThemeMode(savedTheme),
+    locale: Locale(savedLang),
+  ));
 }
 
-class PriceHawkApp extends StatelessWidget {
-  const PriceHawkApp({super.key});
+ThemeMode _getThemeMode(String theme) {
+  switch (theme) {
+    case 'light':
+      return ThemeMode.light;
+    case 'dark':
+      return ThemeMode.dark;
+    default:
+      return ThemeMode.system;
+  }
+}
+
+class PriceHawkApp extends StatefulWidget {
+  final ThemeMode themeMode;
+  final Locale locale;
+
+  const PriceHawkApp({super.key, required this.themeMode, required this.locale});
+
+  @override
+  State<PriceHawkApp> createState() => _PriceHawkAppState();
+}
+
+class _PriceHawkAppState extends State<PriceHawkApp> {
+  late ThemeMode _themeMode;
+  late Locale _locale;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeMode = widget.themeMode;
+    _locale = widget.locale;
+  }
+
+  void _updateTheme(String theme) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('theme', theme);
+    setState(() => _themeMode = _getThemeMode(theme));
+  }
+
+  void _updateLanguage(String languageCode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('language', languageCode);
+    setState(() => _locale = Locale(languageCode));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final localeProvider = Provider.of<LocaleProvider>(context);
-
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Price Hawk',
-      theme: themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
-      locale: localeProvider.locale,
-      supportedLocales: const [
-        Locale('en', ''), // English
-        Locale('hi', ''), // Hindi
-      ],
+      debugShowCheckedModeBanner: false,
+      themeMode: _themeMode,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      locale: _locale,
+      supportedLocales: const [Locale('en'), Locale('hi')],
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      home: const SplashScreen(),
+      home: HomeScreen(
+        onThemeChanged: _updateTheme,
+        onLanguageChanged: _updateLanguage,
+      ),
     );
   }
 }
