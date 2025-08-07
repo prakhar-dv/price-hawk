@@ -1,0 +1,18 @@
+{
+  "app_title": "प्राइस हॉक",
+  "track_product": "प्रोडक्ट ट्रैक करें",
+  "price_history": "प्राइस हिस्ट्री",
+  "settings": "सेटिंग्स",
+  "language": "भाषा",
+  "theme": "थीम",
+  "light": "लाइट",
+  "dark": "डार्क",
+  "logout": "लॉगआउट",
+  "premium_plan": "प्रीमियम प्लान",
+  "donate": "दान करें",
+  "contact": "संपर्क करें",
+  "admin_only": "केवल एडमिन",
+  "sign_in": "साइन इन करें",
+  "price_drop_alert": "कीमत में गिरावट!",
+  "product_deleted": "प्रोडक्ट डिलीट हुआ"
+}
