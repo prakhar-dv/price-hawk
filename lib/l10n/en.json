@@ -1,0 +1,18 @@
+{
+  "app_title": "Price Hawk",
+  "track_product": "Track Product",
+  "price_history": "Price History",
+  "settings": "Settings",
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "logout": "Logout",
+  "premium_plan": "Premium Plan",
+  "donate": "Donate",
+  "contact": "Contact",
+  "admin_only": "Admin Only",
+  "sign_in": "Sign In",
+  "price_drop_alert": "Price Drop Alert!",
+  "product_deleted": "Product deleted"
+}
