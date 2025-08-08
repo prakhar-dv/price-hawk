@@ -3,17 +3,15 @@ workflows:
     name: Build Price Hawk APK
     environment:
       flutter: "3.19.6"
-      android_signing:
-        - keystore_reference: pricehawk_keystore
       vars:
         PACKAGE_NAME: "com.prakhar.pricehawk"
     scripts:
-      - name: Install Flutter dependencies
-        script: |
-          flutter pub get
-      - name: Build release APK
-        script: |
-          flutter build apk --release
+      - name: Decode keystore
+        script: echo $CM_KEYSTORE | base64 --decode > android/keystore.jks
+      - name: Get dependencies
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --release
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
     publishing:
