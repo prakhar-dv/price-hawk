@@ -6,6 +6,8 @@ workflows:
       vars:
         PACKAGE_NAME: "com.prakhar.pricehawk"
     scripts:
+      - name: Create android folder if not exists
+        script: mkdir -p android
       - name: Decode keystore
         script: echo $CM_KEYSTORE | base64 --decode > android/keystore.jks
       - name: Get dependencies
