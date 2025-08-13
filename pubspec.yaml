@@ -1,50 +1,55 @@
 name: price_hawk
-description: A smart price tracker app with alerts and deals
+description: A smart price tracker app with multi-language, ads, and notifications.
+publish_to: "none" # Private project
+
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
 
-  # Firebase Core
-  firebase_core: ^2.25.4
-  firebase_auth: ^4.17.4
-  cloud_firestore: ^4.15.4
-
-  # Notifications
-  firebase_messaging: ^14.7.4
-  flutter_local_notifications: ^17.1.2
+  # Firebase & Backend
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.15.6
+  firebase_messaging: ^14.7.10
+  http: ^1.2.1
 
   # Ads
-  google_mobile_ads: ^5.1.0
+  google_mobile_ads: ^4.0.0
 
-  # UI + Navigation
+  # State Management
   provider: ^6.1.2
-  flutter_svg: ^2.0.10+1
-  intl: ^0.18.1
 
-  # Login via Google
-  google_sign_in: ^6.2.1
-
-  # Language support
+  # UI & Themes
   flutter_localizations:
     sdk: flutter
+  shared_preferences: ^2.2.2
+  intl: ^0.19.0
+
+  # Notifications
+  flutter_local_notifications: ^17.1.2
+
+  # URL launcher (for donation/contact links)
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^4.0.0
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/logo.png
-    - assets/splash.png
+    - assets/images/logo.png
+    - assets/images/splash.png
 
-
-
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
