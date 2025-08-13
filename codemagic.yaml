@@ -2,7 +2,7 @@ workflows:
   build-price-hawk:
     name: Build Price Hawk APK
     environment:
-      flutter: "3.19.6"
+      flutter: "3.32.8"
       vars:
         PACKAGE_NAME: "com.prakhar.pricehawk"
         KEYSTORE_PATH: "android/keystore.jks"
