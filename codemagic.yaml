@@ -20,7 +20,7 @@ workflows:
         script: flutter pub get
       - name: Clean project
         script: flutter clean
-      - name: Build APK (V2 embedding)
+      - name: Build APK 
         script: flutter build apk --release --no-tree-shake-icons
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
