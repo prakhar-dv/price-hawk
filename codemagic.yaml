@@ -5,15 +5,23 @@ workflows:
       flutter: "3.19.6"
       vars:
         PACKAGE_NAME: "com.prakhar.pricehawk"
+        KEYSTORE_PATH: "android/keystore.jks"
+        KEYSTORE_PASSWORD: $KEYSTORE_PASSWORD
+        KEY_ALIAS: $KEY_ALIAS
+        KEY_PASSWORD: $KEY_PASSWORD
     scripts:
-      - name: Create android folder if not exists
-        script: mkdir -p android
-      - name: Decode keystore
-        script: echo $CM_KEYSTORE | base64 --decode > android/keystore.jks
-      - name: Get dependencies
+      - name: Prepare Android folder
+        script: |
+          mkdir -p android
+          mkdir -p android/app
+      - name: Decode Keystore
+        script: echo $CM_KEYSTORE | base64 --decode > $KEYSTORE_PATH
+      - name: Get Dependencies
         script: flutter pub get
-      - name: Build APK
-        script: flutter build apk --release
+      - name: Clean project
+        script: flutter clean
+      - name: Build APK (V2 embedding)
+        script: flutter build apk --release --no-tree-shake-icons
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
     publishing:
