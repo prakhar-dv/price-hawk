@@ -1,5 +1,6 @@
-// File: android/app/build.gradle
-apply plugin: 'com.android.application'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 apply plugin: 'com.google.gms.google-services'
 
 android {
@@ -52,3 +53,4 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:22.6.0'
     implementation 'androidx.multidex:multidex:2.0.1'
 }
+
