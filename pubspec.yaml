@@ -17,13 +17,14 @@ dependencies:
   shared_preferences: ^2.5.3
 
   # Firebase (latest V2 embedding compatible)
-  firebase_core: ^4.0.0
+  firebase_core: ^3.4.0
   firebase_auth: ^6.0.1
   cloud_firestore: ^6.0.0
-  firebase_messaging: ^16.0.0
+  firebase_messaging: ^15.0.0
+  flutter_local_notifications: ^17.2.2
 
   # Ads
-  google_mobile_ads: ^6.0.0
+  google_mobile_ads:  ^5.1.0
 
   # WebView
   webview_flutter: ^4.13.0
@@ -38,3 +39,4 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/splash.png
+
