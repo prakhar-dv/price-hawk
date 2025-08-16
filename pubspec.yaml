@@ -24,7 +24,7 @@ dependencies:
   flutter_local_notifications: ^17.2.2
 
   # Ads
-  google_mobile_ads:  ^5.1.0
+  google_mobile_ads: ^5.1.0
 
   # WebView
   webview_flutter: ^4.13.0
@@ -39,5 +39,3 @@ flutter:
   assets:
     - assets/images/logo.png
     - assets/images/splash.png
-
-
